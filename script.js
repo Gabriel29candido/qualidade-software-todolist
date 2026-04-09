@@ -1,4 +1,4 @@
-// Testando a revisão automatizada
+// Testando a revisão automatizada.
 // Proteção para o ambiente de teste (Node.js)
 if (typeof localStorage === "undefined" || localStorage === null) {
     var localStorage = {
