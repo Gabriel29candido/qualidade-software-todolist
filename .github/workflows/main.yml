@@ -1,0 +1,22 @@
+# 1. Nome que vai aparecer lá na aba "Actions"
+name: CI To-Do List
+
+# 2. Quando o robô deve trabalhar? 
+# Ele vai rodar sempre que houver um 'push' (envio) ou um 'pull request' na branch 'main'
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# 3. O que o robô vai fazer de fato?
+jobs:
+  test-quality: # Nome do trabalho
+    runs-on: ubuntu-latest # O GitHub vai abrir um computador virtual com Linux (Ubuntu)
+    
+    steps: # Passos da receita:
+      - name: Baixando o código do repositório
+        uses: actions/checkout@v4 # Passo 1: O robô entra na sua pasta e lê seus arquivos
+
+      - name: Executando Testes Unitários
+        run: node testes.js # Passo 2: O robô digita "node testes.js" no terminal dele
