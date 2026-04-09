@@ -2,8 +2,8 @@
 > **Link do Projeto:** [CLIQUE AQUI PARA ACESSAR O SITE](https://gabriel29candido.github.io/qualidade-software-todolist/)
 
 ## Integrantes
-* Nome da Dupla - Danyel Guerra Batista
-* Nome da Dupla - Gabriel Cândido Gonçalves
+* Danyel Guerra Batista
+* Gabriel Cândido Gonçalves
 
 ## Sobre o Projeto
 Este projeto foi desenvolvido para a disciplina de Qualidade de Software, focando em:
