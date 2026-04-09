@@ -156,12 +156,31 @@ function renderCalendar() {
 document.getElementById('prevMonth').onclick = () => { calendarDate.setMonth(calendarDate.getMonth() - 1); renderCalendar(); };
 document.getElementById('nextMonth').onclick = () => { calendarDate.setMonth(calendarDate.getMonth() + 1); renderCalendar(); };
 document.getElementById('clearFilter').onclick = () => { selectedFilterDate = null; renderApp(); };
+
+// Nova função de validação exigida para os testes
+function validarTarefa(text) {
+    if (!text || text.trim().length < 3) {
+        return false;
+    }
+    return true;
+}
+
 document.getElementById('addBtn').onclick = () => {
-    const text = document.getElementById('taskInput').value.trim(); const date = document.getElementById('taskDate').value;
-    const category = document.getElementById('taskCategory').value; if(!text) return;
+    const text = document.getElementById('taskInput').value.trim(); 
+    const date = document.getElementById('taskDate').value;
+    const category = document.getElementById('taskCategory').value; 
+    
+    // Agora usamos a função de validação
+    if(!validarTarefa(text)) {
+        alert("A tarefa precisa ter pelo menos 3 caracteres!");
+        return;
+    }
+
     if(!profiles[currentUserName]) profiles[currentUserName] = [];
     profiles[currentUserName].push({id: Date.now(), text, date, category, completed: false});
-    document.getElementById('taskInput').value = ''; saveData(); renderApp();
+    document.getElementById('taskInput').value = ''; 
+    saveData(); 
+    renderApp();
 };
 
 function showUserModal(isForced = false) {
@@ -187,3 +206,7 @@ document.getElementById('createBtn').onclick = () => {
 function exportData() { const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(profiles)); const dl = document.createElement('a'); dl.setAttribute("href", dataStr); dl.setAttribute("download", "backup.json"); dl.click(); }
 function importData(e) { const reader = new FileReader(); reader.onload = (ev) => { profiles = JSON.parse(ev.target.result); saveData(); location.reload(); }; reader.readAsText(e.target.files[0]); }
 init();
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { validarTarefa };
+}
