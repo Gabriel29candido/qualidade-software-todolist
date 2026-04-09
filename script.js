@@ -1,3 +1,27 @@
+// Proteção para o ambiente de teste (Node.js)
+if (typeof localStorage === "undefined" || localStorage === null) {
+    var localStorage = {
+        getItem: function () { return null; },
+        setItem: function () { },
+        removeItem: function () { }
+    };
+}
+
+if (typeof document === "undefined") {
+    var document = {
+        getElementById: function() { 
+            return { 
+                innerText: '', innerHTML: '', style: {}, 
+                classList: { add: ()=>{}, remove: ()=>{}, toggle: ()=>{} }, 
+                appendChild: ()=>{} 
+            }; 
+        },
+        createElement: function() { return { classList: { add: ()=>{}, remove: ()=>{} }, style: {} }; },
+        createDocumentFragment: function() { return {}; }
+    };
+}
+
+// Suas variáveis originais agora protegidas
 let profiles = JSON.parse(localStorage.getItem('todo_profiles')) || {};
 let currentUserName = localStorage.getItem('active_user');
 let calendarDate = new Date();
