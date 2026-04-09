@@ -1,0 +1,128 @@
+:root {
+    --primary: #6366f1; --success: #22c55e; --danger: #ef4444; --warning: #f97316; --bg: #0f172a;
+    --cat-pessoal: #22c55e; --cat-trabalho: #3b82f6; --cat-estudos: #eab308; --cat-urgente: #ef4444;
+}
+
+body { font-family: 'Inter', sans-serif; background: var(--bg); display: flex; justify-content: center; min-height: 100vh; margin: 0; padding: 40px 20px; box-sizing: border-box; overflow-x: hidden; }
+.main-layout { display: flex; gap: 30px; width: 100%; max-width: 1000px; align-items: flex-start; }
+
+.app-container { background: white; flex: 1; padding: 2.5rem; border-radius: 32px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); position: relative; min-width: 0; }
+
+.dashboard-bar { width: 100%; height: 10px; background: #f1f5f9; border-radius: 20px; margin-top: 15px; overflow: hidden; display: flex; }
+.dash-seg { height: 100%; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.user-config-btn { position: absolute; top: 25px; right: 25px; background: #f8fcf9; color: var(--primary); border: 1px solid #e2e8f0; width: 42px; height: 42px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s; z-index: 10; }
+.user-config-btn:hover { transform: rotate(5deg); background: var(--primary); color: white; }
+
+.calendar-container { background: white; padding: 20px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); width: 280px; }
+.calendar-nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+.calendar-nav button { background: none; border: none; cursor: pointer; color: var(--primary); font-size: 1rem; padding: 5px; }
+#calendar-header { font-weight: 800; font-size: 0.85rem; text-transform: capitalize; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; text-align: center; font-size: 0.75rem; }
+.day { width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 50%; position: relative; color: #64748b; cursor: pointer; transition: 0.2s; }
+.today { background: #eef2ff; color: var(--primary); font-weight: 800; }
+.has-task::after { content: ''; position: absolute; bottom: 3px; width: 5px; height: 5px; background: var(--warning); border-radius: 50%; }
+.selected-day { background: var(--primary) !important; color: white !important; }
+.btn-clear-filter { width: 100%; margin-top: 15px; padding: 8px; border: none; background: #f1f5f9; border-radius: 8px; font-size: 0.7rem; font-weight: 700; cursor: pointer; color: var(--primary); }
+
+.status-row { display: flex; align-items: center; gap: 10px; margin-top: 5px; }
+#task-counter { background: #fff7ed; color: var(--warning); padding: 2px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 800; }
+
+.status-tag { font-size: 0.6rem; padding: 2px 6px; border-radius: 4px; font-weight: 800; text-transform: uppercase; margin-left: 5px; }
+.status-atrasado { background: #fee2e2; color: #ef4444; }
+.status-emdia { background: #dcfce7; color: #22c55e; }
+
+.input-area-expanded { background: #f8fafc; padding: 18px; border-radius: 20px; margin: 25px 0; border: 1px solid #f1f5f9; }
+#taskInput { width: 100%; padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; margin-bottom: 10px; outline: none; transition: 0.2s; }
+#taskInput:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(99,102,241,0.1); }
+.input-row { display: flex; gap: 8px; }
+#taskCategory, #taskDate { border: 2px solid #e2e8f0; border-radius: 10px; padding: 8px; outline: none; background: white; font-size: 0.85rem; flex: 1; min-width: 0; }
+#addBtn { background: var(--primary); color: white; border: none; padding: 0 15px; border-radius: 10px; font-weight: 800; cursor: pointer; font-size: 0.7rem; }
+#addBtn:hover{
+   transform: rotate(1deg); background: var(--primary); color: white; 
+}
+
+ul { list-style: none; padding: 0; margin: 0; }
+li { background: white; margin-bottom: 12px; padding: 15px; border-radius: 16px; border: 1px solid #f1f5f9; border-left: 6px solid #ccc; transition: 0.3s ease; }
+li.cat-pessoal { border-left-color: var(--cat-pessoal); }
+li.cat-trabalho { border-left-color: var(--cat-trabalho); }
+li.cat-estudos { border-left-color: var(--cat-estudos); }
+li.cat-urgente { border-left-color: var(--cat-urgente); }
+
+.task-main { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.task-text { flex: 1; font-weight: 500; color: #1e293b; word-break: break-word; }
+.task-actions { display: flex; gap: 5px; }
+.btn-action { width: 32px; height: 32px; border-radius: 8px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
+.btn-check { background: #f0fdf4; color: var(--success); }
+.btn-edit { background: #eff6ff; color: var(--primary); }
+.btn-del { background: #fef2f2; color: var(--danger); }
+
+.edit-container { display: flex; flex-direction: flex; gap: 8px; width: 100%; }
+.edit-input { padding: 10px; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 0.9rem; }
+
+.fade-out-success { background: #1ae000 !important; opacity: 0; transform: scale(0.95); pointer-events: none; }
+.fade-out-danger { background: #ff0000 !important; opacity: 0; transform: translateX(20px); pointer-events: none; }
+.hidden { display: none !important; }
+.modal-overlay { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.8); display:flex; justify-content:center; align-items:center; z-index:2000; backdrop-filter: blur(5px); }
+.modal-content { background: white; padding: 2rem; border-radius: 24px; width: 90%; max-width: 400px; }
+
+/* ESTILIZAÇÃO DO NOVO PERFIL (Solicitado) */
+.input-group-modal { display: flex; gap: 10px; margin-bottom: 20px; }
+#newUserName { flex: 1; padding: 12px; border: 2px solid #e2e8f0; border-radius: 12px; outline: none; font-family: inherit; transition: 0.2s; }
+#newUserName:focus { border-color: var(--primary); }
+#createBtn { background: var(--primary); color: white; border: none; width: 45px; height: 45px; border-radius: 12px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; transition: 0.2s; }
+#createBtn:hover { background: #4f46e5; transform: scale(1.05); }
+
+.user-card { background: #f8fafc; border: 2px solid #e2e8f0; border-radius: 14px; display: flex; align-items: center; margin-bottom: 10px; cursor: pointer; }
+.user-name-clickable { flex: 1; padding: 12px 15px; font-weight: 600; }
+.btn-backup { 
+    display: block; 
+    width: 100%;    
+    padding: 12px;  
+    background: #f1f5f9; 
+    border-radius: 10px; 
+    font-size: 0.8rem; 
+    font-weight: 700; 
+    text-align: center; 
+    cursor: pointer; 
+    color: #475569; 
+    border: 1px solid #e2e8f0; 
+    transition: 0.2s;
+    box-sizing: border-box; 
+    margin-top: 10px;
+}
+
+.btn-backup:hover {
+    background: #e2e8f0;
+    color: var(--primary);
+}
+@media (max-width: 900px) { .main-layout { flex-direction: column-reverse; align-items: center; } .app-container { width: 100%; padding: 1.5rem; } .calendar-container { width: 100%; } }
+
+/* Container que segura o título "Configurações" e o botão "X" */
+.modal-header {
+    display: flex;
+    justify-content: space-between; /* Empurra os itens para as extremidades */
+    align-items: center;            /* Alinha verticalmente no centro */
+    margin-bottom: 20px;
+}
+
+/* Estilização do botão X para ficar bonito e à direita */
+#close-modal {
+    background: #f1f5f9;
+    border: none;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    color: #64748b;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+#close-modal:hover {
+    background: var(--danger);
+    color: white;
+    transform: rotate(90deg); /* Um toque de animação ao passar o mouse */
+}

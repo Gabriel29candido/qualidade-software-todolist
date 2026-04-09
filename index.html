@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus List Pro - Ultra v5</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="user-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Configurações</h2>
+                <button id="close-modal"><i class="fas fa-times"></i></button>
+            </div>
+            <div id="user-list"></div>
+            <div id="new-user-section">
+                <hr>
+                <div class="input-group-modal">
+                    <input type="text" id="newUserName" placeholder="Novo Perfil" maxlength="15">
+                    <button id="createBtn"><i class="fas fa-plus"></i></button>
+                </div>
+            </div>
+            <div class="backup-section">
+                <hr>
+                <div class="backup-btns">
+                    <button onclick="exportData()" class="btn-backup">Exportar Backup</button>
+                    <label for="importFile" class="btn-backup">Importar Backup</label>
+                    <input type="file" id="importFile" hidden onchange="importData(event)">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-layout">
+        <aside class="calendar-sidebar">
+            <div class="calendar-container">
+                <div class="calendar-nav">
+                    <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                    <div id="calendar-header"></div>
+                    <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid"></div>
+                <button id="clearFilter" class="btn-clear-filter hidden">Ver todas as tarefas</button>
+            </div>
+        </aside>
+
+        <main class="app-container">
+            <button id="switchUserBtn" class="user-config-btn"><i class="fas fa-user-cog"></i></button>
+            <header>
+                <h1 id="greeting">Olá!</h1>
+                <div class="status-row">
+                    <p id="date-display"></p>
+                    <span id="task-counter">0 abertas</span>
+                </div>
+                
+                <div class="dashboard-bar" id="dashboard-bar"></div>
+            </header>
+            
+            <div class="input-area-expanded">
+                <input type="text" id="taskInput" placeholder="O que vamos fazer hoje?" autocomplete="off">
+                <div class="input-row">
+                    <select id="taskCategory">
+                        <option value="pessoal">🟢 Pessoal</option>
+                        <option value="trabalho">🔵 Trabalho</option>
+                        <option value="estudos">🟡 Estudos</option>
+                        <option value="urgente">🔴 Urgente</option>
+                    </select>
+                    <input type="date" id="taskDate">
+                    <button id="addBtn">ADICIONAR</button>
+                </div>
+            </div>
+
+            <ul id="taskList"></ul>
+            <div id="empty-state" class="hidden">🎉 Tudo limpo!</div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
